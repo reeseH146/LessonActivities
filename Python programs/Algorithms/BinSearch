@@ -1,0 +1,34 @@
+# Generates the sorted list for a binary search and takes input of itemt to find
+LVal = 0
+HVal = 10
+SortedList = [x for x in range(LVal, HVal)]
+print(SortedList)
+
+# Sets parameters for binary search
+LBound = 0
+HBound = 10
+Midpoint = 0
+
+# Binary search
+FUNCTION BinarySearch(ItemFind, LBound, HBound)
+    Found = False
+    WHILE (NOT Found) AND ((LBound <= HBound)):
+        # Assigns the midpoint
+        Midpoint = LBound + (HBound - LBound) DIV 2
+        # Checks if the midpoint is the item
+        IF ItemFind == SortedList[Midpoint] THEN
+            Found = True
+        # If Item is larger than the midpoint then Lower is Midpoint + 1
+        ELSE IF ItemFind > SortedList[Midpoint] THEN
+            LBound = Midpoint + 1
+        # If Item is larger than the midpoint then Lower is Midpoint - 1
+        ELSE IF ItemFind < SortedList[Midpoint] THEN
+            HBound = Midpoint - 1
+    return(Midpoint)
+ENDWHILE
+
+# Tests all items in the array works with the binary search
+FOR x = LBound to HBound
+    Midpoint = BinarySearch(x, LBound, HBound)
+    print(f"We found {x} in SortedList at index {Midpoint} which is {SortedList[Midpoint]}")
+ENDFOR
