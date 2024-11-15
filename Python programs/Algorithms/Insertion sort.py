@@ -12,7 +12,6 @@ def InsertionSort(List):
             num -= 1
             if num == 0:
                 break
-
     return List
 
 
