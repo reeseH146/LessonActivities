@@ -1,7 +1,7 @@
 # Quick sort program
 import random as r
 
-UnsortedList = [r.randint(0, 5) for x in range(5)]
+UnsortedList = [r.randint(0, 1000000) for x in range(999999)]
 #284713965
 #248713965
 #241783965
