@@ -8,10 +8,11 @@ def toBinary(val):
             bin = "1" + bin
         temp = temp // 2
     return bin
-            
-valid = False
-while not valid:
+
+userInput = -1
+while (1 > userInput) or (userInput > 255):
     userInput = int(input("Enter a num to convert to a binary value : "))
-    if 1 <= userInput <= 255:
-        valid = True
-        print(toBinary(userInput))
+print(toBinary(userInput))
+
+"""for i in range(1, 256):
+    print(toBinary(i))"""
