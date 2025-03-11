@@ -1,4 +1,27 @@
-// alert("help")
+function SubmitData() {
+    var form = getElementsById("Form");
+    console.log(`Thank you for submitting to this form ${form}`);
+}
+
+form.addEventListener("submit", (event) => { // No idea how this line works
+    event.preventDefault(); // Or this...
+    SubmitData();
+});
+
+
+
+
+
+
+
+
+
+/*Idea : When user types close to 1000 chars (element.keyup), turn red and show a warning (alert)
+When reach 1111 then delete text area content -> element.innerText = "";
+
+The calender sets today as default*/
+
+// alert("help");
 
 /* function FormGetCurrentDate() {
     const today = new Date();

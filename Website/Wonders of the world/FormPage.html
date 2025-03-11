@@ -30,25 +30,26 @@
 	</div>
 
 	<!--Form : 
- - First name
- - Second name
- - Email
- - Date of visit
- - Message-->
-	<form>
+ - First name - Required
+ - Second name - Required
+ - Email - Required - 1 @ only and min 1 .
+ - Date of visit - Optional
+ - Message - Required-->
+	<form id = "FormID">
 		<label name = "Form" for = "FirstNameTB">First name : </label>
-		<input name = "Form" id = "FirstNameTB">
+		<input name = "Form" id = "FirstNameTB" placeholder = "John">
 		<label name = "Form" for = "SecondNameTB">Second name : </label>
-		<input name = "Form" id = "SecondNameTB">
+		<input name = "Form" id = "SecondNameTB" placeholder = "Doe">
 
 		<label name = "Form" for = "EmailAddress">Email address : </label>
-		<input name = "Form" id = "EmailAddress" type = "email">
-		<label name = "Form" for = "DateOfVisit">Date of Visit : </label>
+		<input name = "Form" id = "EmailAddress" type = "email" placeholder = "JohnDoe03@gmail.com">
+		<label name = "Form" for = "DateOfVisit">Date of Visit (if applicable) : </label>
 		<input name = "Form" id = "DateOfVisit" type = "date" min = "01/01/1900"> <!--Cannot get function to get current data for value and max working-->
+
 
 		<textarea name = "Form" rows = "4" cols = "100" placeholder = "Put down your experiences at these wonders, anywhere else or just a little bit of feeback"></textarea>
 
-		<button name = "Form" onclick = "alert('Form complete')">Submit Form</button>
+		<button name = "Form" onclick = "alert('Form complete'); SubmitData()">Submit Form</button>
 	</form>
 	
 	<footer>

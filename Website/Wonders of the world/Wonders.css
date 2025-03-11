@@ -3,9 +3,8 @@ body {
     background-image : repeating-radial-gradient( circle at 0 0, transparent 0, #fff9bc 12px ), repeating-linear-gradient( #b2982555, #b29825 );
 }
 
-header {
+header, p, form, div, footer {
     background-color : #cbeada;
-
 }
 
 img {
