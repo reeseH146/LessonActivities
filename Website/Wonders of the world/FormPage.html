@@ -2,7 +2,7 @@
 <html>
     <head>
 	<script src = "Wonders.js"> </script>
-	<link rel = "stylesheet" src = "Wonders.css">
+	<link rel = "stylesheet" href = "Wonders.css">
     </head>
     <body>
 	<header>
@@ -26,18 +26,31 @@
 
 	<!--Main info-->
 	<div>
-	    <p>All information sourced from <a href = "https://www.britannica.com/list/new-seven-wonders-of-the-world">Britanica's page on the New Seven Wonders of the World</a></p>
+	    <p>All information sourced from <a href = "https://www.britannica.com/list/new-seven-wonders-of-the-world">Britanica's page on the New Seven Wonders of the World</a>, images sourced form google searches</p>
 	    <h1>Please send some feedback or your own experiences on your travels (can be any!) :}</h1>
-	    
 	</div>
 
-	<!--Info-->
-	<div>
-	</div>
+	<!--Form : 
+ - First name
+ - Second name
+ - Email
+ - Date of visit
+ - Message-->
+	<form>
+	    <label name = "Form" for = "FirstNameTB">First name : </label>
+	    <input name = "Form" id = "FirstNameTB">
+	    <label name = "Form" for = "SecondNameTB">Second name : </label>
+	    <input name = "Form" id = "SecondNameTB">
 
-	<!--Images-->
-	<div>
-	</div>
+	    <label name = "Form" for = "EmailAddress">Email address : </label>
+	    <input name = "Form" id = "EmailAddress" type = "email">
+	    <label name = "Form" for = "DateOfVisit">Date of Visit : </label>
+	    <input name = "Form" id = "DateOfVisit" type = "date" min = "01/01/1900"> <!--Cannot get function to get current data for value and max working-->
+
+	    <textarea name = "Form" rows = "4" cols = "100">Put down your experiences at these wonders, anywhere else or just a little bit of feeback</textarea>
+
+	    <button name = "Form" onclick = "alert('Form complete')">Submit Form</button>
+	</form>
 
 	<footer>
 	    <p>If you have any website suggestions you would like to see please email them at reesehe@gmail.com or fill in this <a href = FormPage.html>form</a></p>
