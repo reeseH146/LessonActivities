@@ -1,9 +1,40 @@
-footer {
-    border : 2px solid green;
+body {
+    background-color : #fff9bc;
+    background-image : repeating-radial-gradient( circle at 0 0, transparent 0, #fff9bc 12px ), repeating-linear-gradient( #b2982555, #b29825 );
 }
 
-h1 {
-  border: 2px solid green;
-  background-color: beige;
+header {
+    background-color : #cbeada;
+
+}
+
+img {
+    background-color : whitesmoke;
+    border-style : solid;
+    border-width : 5px;
+    border-color : black;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+p {
+    font-size : 16px;
+}
+
+footer {
+    width : 80%;
+    margin-left : auto;
+    margin-right : auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 
+    0 0 0 2px #7A7586,
+    0 0 0 5px #f0f2f5;
 }
 
