@@ -1,3 +1,10 @@
+Form = document.getElementById("Form")
+
+Form.addEventListener("submit", () => {
+    console.log(Form.getAttributes());
+});
+
+/*
 function SubmitData() {
     var form = getElementsById("Form");
     console.log(`Thank you for submitting to this form ${form}`);
@@ -7,7 +14,7 @@ form.addEventListener("submit", (event) => { // No idea how this line works
     event.preventDefault(); // Or this...
     SubmitData();
 });
-
+*/
 
 
 

@@ -25,9 +25,8 @@
 	<hr>
 
 	<!--Main info-->
-	<div>
-		<h1>Please send some feedback or your own experiences on your travels (can be any!) :}</h1>
-	</div>
+
+	<h2 class = "Background">Please send some feedback or your own experiences on your travels (can be any!) :}</h2>
 
 	<!--Form : 
  - First name - Required
@@ -35,24 +34,29 @@
  - Email - Required - 1 @ only and min 1 .
  - Date of visit - Optional
  - Message - Required-->
-	<form id = "FormID">
-		<label name = "Form" for = "FirstNameTB">First name : </label>
-		<input name = "Form" id = "FirstNameTB" placeholder = "John">
-		<label name = "Form" for = "SecondNameTB">Second name : </label>
-		<input name = "Form" id = "SecondNameTB" placeholder = "Doe">
-
-		<label name = "Form" for = "EmailAddress">Email address : </label>
-		<input name = "Form" id = "EmailAddress" type = "email" placeholder = "JohnDoe03@gmail.com">
-		<label name = "Form" for = "DateOfVisit">Date of Visit (if applicable) : </label>
-		<input name = "Form" id = "DateOfVisit" type = "date" min = "01/01/1900"> <!--Cannot get function to get current data for value and max working-->
-
-
-		<textarea name = "Form" rows = "4" cols = "100" placeholder = "Put down your experiences at these wonders, anywhere else or just a little bit of feeback"></textarea>
-
-		<button name = "Form" onclick = "alert('Form complete'); SubmitData()">Submit Form</button>
+	<form id = "FormID" action = "Wonders.js" post = "post" class = "background horizontalPos">
+		<div class = "horizontalPos">
+			<div class = "verticalPos">
+				<label for = "FirstNameTB">First name : </label>
+				<label for = "SecondNameTB">Second name : </label>
+				<label for = "EmailAddress">Email address : </label>
+				<label for = "DateOfVisit">Date of Visit (if applicable) : </label>
+				<input type = "submit" value = "Submit Form" onclick = "alert('Form complete');">
+				<button type = "submit" name = "Form" onclick = "alert('Form complete');">Old button : Hello there!</button>
+			</div>
+			<div class = "verticalPos">
+				<input name = "FormFirstN" id = "FirstNameTB" placeholder = "John">
+				<input name = "FormLastN" id = "SecondNameTB" placeholder = "Doe">
+				<input name = "FormEmal" id = "EmailAddress" type = "email" placeholder = "JohnDoe03@gmail.com">
+				<input name = "FormDate" id = "DateOfVisit" type = "date" min = "01/01/1900"> <!--Cannot get function to get current data for value and max working-->
+			</div>
+		</div>
+		<div>
+			<textarea name = "FormText" rows = "8" cols = "100" placeholder = "Put down your experiences at these wonders, anywhere else or just a little bit of feeback"></textarea>
+		</div>
 	</form>
 	
-	<footer>
+	<footer class = "background" id = "footerStuff">
 		<p>All information sourced from <a href = "https://www.britannica.com/list/new-seven-wonders-of-the-world">Britanica's page on the New Seven Wonders of the World</a>, images sourced form google searches</p>
 		<p>If you have any website suggestions you would like to see please email them at reesehe@gmail.com or fill in this <a href = FormPage.html>form</a></p>
 	</footer>
