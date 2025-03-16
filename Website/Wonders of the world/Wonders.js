@@ -1,42 +1,75 @@
-Form = document.getElementById("Form")
+function FormValidation(FormObj) {
+    // Form data stored as variables
+    let FName = FormObj.elements.item(1).value;
+    let LName = FormObj.elements.item(2).value; 
+    let Email = FormObj.elements.item(3).value;
+    let DateOfSub = new Date(FormObj.elements.item(4).value);
+    let Description = FormObj.elements.item(5).value;
 
-Form.addEventListener("submit", () => {
-    console.log(Form.getAttributes());
+    // Error variables
+    let Errors = ``;
+    let NoErrors = false;
+
+    // Error Checking and logs it
+    // alert(typeof DateOfSub); // Used to debug the types of variables so can properly be compared
+    if (FName == "") {
+        Errors.concat(` - You must have a first name!`);
+        NoErrors = false;
+    };
+/*
+    if (LName == "") {
+        Errors += ` - You must have a last name!`;
+        NoErrors = False;	
+    };*/
+
+    // Sends data off if valid
+    if (NoErrors) {
+        FormOutput();
+    }
+    else {
+        alert(Errors);
+    }
+}
+
+function FormOutput() {
+    alert("FormOutput() works");
+}
+
+document.addEventListener("DOMContentLoaded", function(event) { // On loading of full page, runs code
+    const Form = document.getElementById("FormName");      // Identifies form
+    const Output = document.getElementById("Output");      // Identifies output
+
+    Form.addEventListener("submit", function() {
+	alert("please work");        
+        event.preventDefault(); // Prevents submit when loaded and only when called?
+
+        FormValidation(Form);                              // Validation
+    });
 });
 
 /*
-function SubmitData() {
-    var form = getElementsById("Form");
-    console.log(`Thank you for submitting to this form ${form}`);
-}
+ # Requirements : 
+ 
+ + Input validation
+ - All inputs must be given apart from date and textarea
+ - Email must have at lease 1 "." and only 1 "@"
+ - Date must be in DD/MM/YYYY form and a suitable date (01/01/1900 - 01/01/currentYear++)
 
-form.addEventListener("submit", (event) => { // No idea how this line works
-    event.preventDefault(); // Or this...
-    SubmitData();
-});
+ + Output
+ - Alert `Thank you for completing the form.\n${FirstName[0:3] + SecondName[0:3]}`
+ - Probably store or send off data somehow
+
+ + Easter egg
+ - If name is Ralfs Varpins, alert : sod off Mr 10K SRQ
+ - Reset textarea if length >,000 char
 */
 
 
-
-
-
-
-
-
-/*Idea : When user types close to 1000 chars (element.keyup), turn red and show a warning (alert)
-When reach 1111 then delete text area content -> element.innerText = "";
-
-The calender sets today as default*/
-
-// alert("help");
-
-/* function FormGetCurrentDate() {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0');
-    const day = String(today.getDate()).padStart(2, '0');
-    const CurrentDate = `${year}-${month}-${day}`;
-    document.getElementById("DateOfVisit").setAttribute("max", CurrentDate);
-    alert(CurrentDate);
-} 
+/*
+let TextArea = document.getElementById("TextBox");
+TextArea.addEventListener("input", function() {
+    if (this.value.length >= 10) {
+        this.value = "Too full! BURPP";
+    }
+});
 */
