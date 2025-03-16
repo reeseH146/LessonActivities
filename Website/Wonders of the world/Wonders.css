@@ -50,10 +50,17 @@ img {
 
 a {
     text-decoration : none;
-    color : #000;
+    color : #38b8eb    ;
     font-style : italic;
 }
 
+p, a, button, h1, h2, form {
+    font-family : sans-serif, courier;
+}
+
+p, a, form {
+    font-size : large;
+}
 /*
 Classes
 ---
@@ -68,6 +75,8 @@ Classes
     padding : 5px;
     border : 5px solid #7A7586;
     border-radius : 12px;
+
+/*    transform: skew(10deg,10deg);*/
 }
 
 .horizontalPos {
@@ -100,4 +109,11 @@ ID
     display : flex;
     flex-direction :column ;
     align-items : center;
+
+    position : fixed;
+    bottom : 2%;
+    left : 3%;
+    right : 3%;
+
+    transform : translate (-50%, -50%);
 }
