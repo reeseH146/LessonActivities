@@ -7,43 +7,41 @@ function FormValidation(FormObj) {
     let Description = FormObj.elements.item(5).value;
 
     // Error variables
-    let Errors = ``;
-    let NoErrors = false;
+    let Errors = "";
+    let NoErrors = true;
 
     // Error Checking and logs it
     // alert(typeof DateOfSub); // Used to debug the types of variables so can properly be compared
     if (FName == "") {
-        Errors.concat(` - You must have a first name!`);
+        Errors += " - You must have a first name!";
         NoErrors = false;
     };
-/*
     if (LName == "") {
-        Errors += ` - You must have a last name!`;
-        NoErrors = False;	
-    };*/
+        Errors += "\n - You must have a last name!";
+        NoErrors = false;	
+    };
 
     // Sends data off if valid
     if (NoErrors) {
-        FormOutput();
+	return [NoErrors, FName, LName, Email, DateOfSub, Description];
     }
     else {
         alert(Errors);
     }
 }
 
-function FormOutput() {
-    alert("FormOutput() works");
-}
-
 document.addEventListener("DOMContentLoaded", function(event) { // On loading of full page, runs code
-    const Form = document.getElementById("FormName");      // Identifies form
-    const Output = document.getElementById("Output");      // Identifies output
+    const Form = document.getElementById("FormName");           // Identifies form
+    const Output = document.getElementById("Output");           // Identifies output
 
-    Form.addEventListener("submit", function() {
-	alert("please work");        
-        event.preventDefault(); // Prevents submit when loaded and only when called?
-
-        FormValidation(Form);                              // Validation
+    Form.addEventListener("submit", function(event) {                // Executes code when the Form is submitted
+    alert("please work");                                       // Encourages the code to work
+    event.preventDefault();                                     // When submitted, prevents page from refreshing/updating?
+    let FormData = FormValidation(Form);                        // Validation
+    if (FormData) {                                             // Changes the output box
+        document.getElementById("OutBox").innerHTML = FormData[1];
+    }
+    alert("This code has ran");
     });
 });
 
