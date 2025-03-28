@@ -77,12 +77,10 @@ class BallEntity:
             pg.time.wait(1000)
             quit()
         if self.HitBox.colliderect(Player1.rect):
-            print(1)
             self.SpeedX *= -1
             self.Position[0] = Player1.Position[0] + (Player1.Dimensions[0] * 0.5) + self.Radius
             self.HitBox[0] = Player1.Position[0] + (Player1.Dimensions[0] * 0.5) + self.Radius
         elif (self.HitBox.colliderect(Player2.rect)):
-            print(2)
             self.SpeedX *= -1
             self.Position[0] = Player2.Position[0] - (Player2.Dimensions[0] * 0.5) - self.Radius
             self.HitBox[0] = Player2.Position[0] - (Player2.Dimensions[0] * 0.5) - self.Radius

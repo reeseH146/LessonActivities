@@ -1,6 +1,6 @@
 import pygame as pg
 import random as r
-import socket as soc
+import socket
 
 # Paddle entity
 class PaddleEntity:
