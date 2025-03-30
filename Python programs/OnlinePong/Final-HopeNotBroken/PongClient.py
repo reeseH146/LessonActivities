@@ -112,7 +112,7 @@ except socket.error:
 # Connects to host
 try:
     Port = 12345 # Default port
-    HostIp = "127.0.0.1" # LAN IP
+    HostIp = "192.168.0.30" # LAN IP
     ClientSocket.connect((HostIp, Port))
     print("\033[0;32mSocket successfully connected to Reese LAN Pong server.\033[0;32m") 
 except Exception:
@@ -178,7 +178,6 @@ while GameOn:
 
         except Exception:
             print(f"ERROR : Problem with connection : {Exception}")
-            break
     # Interacts with game
     for event in pg.event.get():
         if (event.type == pg.QUIT) or (event.type == pg.K_ESCAPE):
