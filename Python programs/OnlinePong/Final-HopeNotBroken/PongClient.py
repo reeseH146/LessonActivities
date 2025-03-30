@@ -113,7 +113,7 @@ except socket.error:
 try:
     Port = 12345 # Default port
     HostIp = "127.0.0.1" # LAN IP
-    ClientSocket.connect(("192.168.0.30", Port))
+    ClientSocket.connect((HostIp, Port))
     print("\033[0;32mSocket successfully connected to Reese LAN Pong server.\033[0;32m") 
 except Exception:
     print(f"\033[0;31mERROR : Host not connectable : {socket.error}\033[0;31m")
@@ -144,13 +144,14 @@ while True:
     try:
         ServerData = ClientSocket.recv(128).decode("utf-8")
         if ServerData:
-            ClientNumber = ServerData[-1]
+            ClientNumber = int(ServerData[-1])
             GameOn = True
-            print(ClientNumber)
+            print(ClientNumber, type(ClientNumber))
             break
     except:
         print("Waiting on server")
 
+# Main game
 PreviousTime = t.time()
 KeyBinds = []
 if ClientNumber == 1:
