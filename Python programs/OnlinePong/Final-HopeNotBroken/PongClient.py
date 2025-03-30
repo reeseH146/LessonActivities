@@ -2,6 +2,8 @@ import socket
 import time as t
 import pygame as pg
 
+# Code not updating on PC from laptop so forcing merge conflict
+
 # ----- +++++ ----- +++++ ----- +++++ ----- #
 # ----- +++++ ----- +++++ ----- +++++ ----- #
 # ----- +++++ ----- +++++ ----- +++++ ----- #
@@ -189,7 +191,7 @@ while GameOn:
                 print(13)
         except Exception:
             print(f"ERROR : Problem with connection : {Exception}")
-            
+            break
     # Interacts with game
     for event in pg.event.get():
         if (event.type == pg.QUIT) or (event.type == pg.K_ESCAPE):
