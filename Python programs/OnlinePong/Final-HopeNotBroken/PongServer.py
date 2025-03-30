@@ -4,6 +4,8 @@ import time as t
 """
 Originally more complicated, server would dynamically connect and manage clients
 Now 2 clients only are required for LAN game, they must be connected which means server and client code doesn't need to be designed to bend their backs to keep clients connected and communicating at the same time
+
+Now cause
 """
 
 # Main
@@ -15,7 +17,9 @@ try:
     ServerSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Creates a socket which only accefts IPv4 AddressFamily (AF), and TCP type connection
     # Prepares socket for connections
     Port = 12345 # default port for socket
-    ServerSocket.bind(("", Port)) # Binds socket to address at port, empty address means server listens for all network
+    ServerIP = socket.gethostbyname(socket.gethostname())
+    print(ServerIP)
+    ServerSocket.bind((ServerIP, Port)) # Binds socket to address at port, empty address means server listens for all network
     print(f"\033[0;33mSocket binded at port {Port}\033[0;33m")
     ServerSocket.listen(2) # Listens for incoming connections, backlog is 2 meaning max connections
     print("\033[0;32mSocket successfully created\033[0;32m")
@@ -62,20 +66,16 @@ while True:
         PreviousTime = CurrentTime
         try:
             # Checks client is connected
-            try:
-                ClientPositions[0] = Clients[0][0].recv(128).decode("utf-8") # ASCII characters in utf-8 is 1 byte
-                ClientPositions[1] = Clients[1][0].recv(128).decode("utf-8") # ASCII characters in utf-8 is 1 byte
-                if not ClientPositions[0]:
-                    break
-                else:
-                    Clients[0][0].send(f"{ClientPositions[1]}".encode("utf-8"))
-                if not ClientPositions[1]:
-                    break
-                else:
-                    Clients[1][0].send(f"{ClientPositions[0]}".encode("utf-8"))
-            except BlockingIOError:
-                print(BlockingIOError)
-                pass
+            ClientPositions[0] = Clients[0][0].recv(128).decode("utf-8") # ASCII characters in utf-8 is 1 byte
+            ClientPositions[1] = Clients[1][0].recv(128).decode("utf-8") # ASCII characters in utf-8 is 1 byte
+            if not ClientPositions[0]:
+                break
+            else:
+                Clients[0][0].send(f"{ClientPositions[1]}".encode("utf-8"))
+            if not ClientPositions[1]:
+                break
+            else:
+                Clients[1][0].send(f"{ClientPositions[0]}".encode("utf-8"))
         # If either clients disconnects then closes the game
         except Exception:
             print(f"\033[0;31mERROR : {Exception}\033[0;31m")
