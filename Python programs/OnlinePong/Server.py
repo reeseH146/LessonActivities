@@ -54,6 +54,7 @@ for Client in Clients:
         SystemExit
 
 # While both clients connected, continues to sync game data
+ClientPositions = []
 PreviousTime = t.time()
 while True:
     # Every second, polls to check clients are connected and syncs game data
@@ -61,24 +62,21 @@ while True:
     if (CurrentTime - PreviousTime) > (1):
         PreviousTime = CurrentTime
         try:
-            # Goes through both clients
-            for Client in Clients:
-                # Checks client is connected
-                print(1)
-                try:
-                    Client[0].send(f"\033[0;34mHello client {Clients.index(Client) + 1}\033[0;34m".encode("utf-8"))
-                    print(2)
-                    ClientData = Client[0].recv(128).decode("utf-8") # ASCII characters in utf-8 is 1 byte
-                except BlockingIOError:
-                    print(BlockingIOError)
-                    pass
+            # Checks client is connected
+            try:
+                ClientPositions[0] = Clients[0][0].recv(128).decode("utf-8") # ASCII characters in utf-8 is 1 byte
+                ClientPositions[1] = Clients[1][0].recv(128).decode("utf-8") # ASCII characters in utf-8 is 1 byte
+                if not ClientPositions[0]:
+                    break
                 else:
-                    print(3)
-                    if not ClientData:# (ClientData == b"") or (ClientData == ""):
-                        break
-                    # Syncs data with that client
-                    else:
-                        print(ClientData)
+                    Clients[0][0].send(f"{ClientPositions[1]}".encode("utf-8"))
+                if not ClientPositions[1]:
+                    break
+                else:
+                    Clients[1][0].send(f"{ClientPositions[0]}".encode("utf-8"))
+            except BlockingIOError:
+                print(BlockingIOError)
+                pass
         # If either clients disconnects then closes the game
         except Exception:
             print(f"\033[0;31mERROR : {Exception}\033[0;31m")

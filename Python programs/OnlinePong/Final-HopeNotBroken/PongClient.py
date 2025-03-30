@@ -158,9 +158,16 @@ while GameOn:
     if (CurrentTime - PreviousTime) > (1):
         PreviousTime = CurrentTime
         try:
-            ClientSocket.send(f"Client {ClientNumber} connected".encode("utf-8"))
+            if ClientNumber == 1:
+                ClientSocket.send(f"{Player1.Position[1]}".encode("utf-8"))
+            else:
+                ClientSocket.send(f"{Player2.Position[1]}".encode("utf-8"))
             ServerData = ClientSocket.recv(512).decode("utf-8") # Polls for incoming data 
-            print(ServerData)
+            if ClientNumber == 1:
+                Player2.Position[1] = int(ServerData)
+            else:
+                Player1.Position[1] = int(ServerData)
+
         except Exception:
             print(f"ERROR : Problem with connection : {Exception}")
             break
