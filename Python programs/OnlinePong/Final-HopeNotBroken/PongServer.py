@@ -45,9 +45,7 @@ while len(Clients) < 2:
 for Client in Clients:
     try:
         Client[0].send(f"Acknowledged C{Clients.index(Client) + 1}".encode("utf-8"))
-        """        ClientData = Client.recv(128).decode("utf-8")
-        if ClientData == "Client ready":
-            continue"""
+        Client[0].settimeout(10)
     except:
         # Closes socket and program
         print("Client unable to respond.")

@@ -110,8 +110,9 @@ except socket.error:
 # Connects to host
 try:
     Port = 12345 # Default port
-    HostIp = "127.0.0.1" # LAN IP
+    HostIp = "192.168.0.30" # LAN IP
     ClientSocket.connect((HostIp, Port))
+    ClientSocket.settimeout(10)
     print("\033[0;32mSocket successfully connected to Reese LAN Pong server.\033[0;32m") 
 except Exception:
     print(f"\033[0;31mERROR : Host not connectable : {socket.error}\033[0;31m")
@@ -161,22 +162,34 @@ else:
 while GameOn:
     # Exchanges data with the server every second
     CurrentTime = t.time()
+    print(1)
     if (CurrentTime - PreviousTime) > (1):
         PreviousTime = CurrentTime
+        print(2)
         try:
+            print(3)
             if ClientNumber == 1:
+                print(4)
                 ClientSocket.send(f"{Player1.Position[1]}".encode("utf-8"))
+                print(5)
             else:
+                print(6)
                 ClientSocket.send(f"{Player2.Position[1]}".encode("utf-8"))
+                print(7)
+            print(8)
             ServerData = ClientSocket.recv(512).decode("utf-8") # Polls for incoming data 
+            print(9)
             if ClientNumber == 1:
+                print(10)
                 Player2.Position[1] = int(ServerData)
+                print(11)
             else:
+                print(12)
                 Player1.Position[1] = int(ServerData)
-
+                print(13)
         except Exception:
             print(f"ERROR : Problem with connection : {Exception}")
-            break
+            
     # Interacts with game
     for event in pg.event.get():
         if (event.type == pg.QUIT) or (event.type == pg.K_ESCAPE):
