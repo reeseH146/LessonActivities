@@ -150,6 +150,11 @@ while True:
         print("Waiting on server")
 
 PreviousTime = t.time()
+KeyBinds = []
+if ClientNumber == 1:
+    KeyBinds = [pg.K_w, pg.K_s]
+else:
+    KeyBinds = [pg.K_UP, pg.K_DOWN]
 # Games run until connection breaks or someone loses
 # Main loop
 while GameOn:
