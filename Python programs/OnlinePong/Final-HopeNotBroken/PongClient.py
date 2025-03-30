@@ -52,8 +52,8 @@ class BallEntity:
         self.Position = Position
         self.Radius = Radius
         self.Colour = Colour
-        self.SpeedX = 7
-        Temp = 7
+        self.SpeedX = 1
+        Temp = 1
         self.SpeedY = Temp
         self.Dimensions = [20, 1080 * 0.6 * 0.3]
         self.HitBox = pg.Rect(int(self.Position[0]), int(self.Position[1]), self.Radius * 2, self.Radius * 2)
@@ -111,7 +111,7 @@ except socket.error:
 try:
     Port = 12345 # Default port
     HostIp = "127.0.0.1" # LAN IP
-    ClientSocket.connect((HostIp, Port))
+    ClientSocket.connect(("192.168.0.30", Port))
     print("\033[0;32mSocket successfully connected to Reese LAN Pong server.\033[0;32m") 
 except Exception:
     print(f"\033[0;31mERROR : Host not connectable : {socket.error}\033[0;31m")
