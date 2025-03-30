@@ -46,8 +46,8 @@ class BallEntity:
         self.Position = Position
         self.Radius = Radius
         self.Colour = Colour
-        self.SpeedX = 0.7
-        Temp = r.random()
+        self.SpeedX = 7
+        Temp = 7
         self.SpeedY = Temp
         self.Dimensions = [20, 1080 * 0.6 * 0.3]
         self.HitBox = pg.Rect(int(self.Position[0]), int(self.Position[1]), self.Radius * 2, self.Radius * 2)
@@ -90,6 +90,7 @@ ScreenDimensions = [1920 * 0.6, 1080 * 0.6]
 Window = pg.display.set_mode(ScreenDimensions)
 Window.fill((96, 176, 90))
 pg.display.flip()
+Clock = pg.time.Clock()
 
 Player1 = PaddleEntity([int(ScreenDimensions[0] * 0.02), int(ScreenDimensions[1] * 0.5)], (200, 20, 20))
 Player2 = PaddleEntity([int(ScreenDimensions[0] * 0.98), int(ScreenDimensions[1] * 0.5)], (20, 20, 200))
@@ -120,3 +121,4 @@ while True:
     Ball.Move()
     Ball.Display()
     pg.display.update()
+    Clock.tick(60)

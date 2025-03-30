@@ -69,6 +69,8 @@ while True:
                     Client[0].send(f"\033[0;34mHello client {Clients.index(Client) + 1}\033[0;34m".encode("utf-8"))
                     print(2)
                     ClientData = Client[0].recv(128).decode("utf-8") # ASCII characters in utf-8 is 1 byte
+                except socket.timeout:
+                    print("Client timed out")
                 except BlockingIOError:
                     print(BlockingIOError)
                     pass
