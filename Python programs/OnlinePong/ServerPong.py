@@ -182,6 +182,7 @@ ClientSocket.settimeout(0.2)
 while GameOn:
     Clock.tick(120)
     ClientSocket.sendall(str(Player1.Position[1]).encode("utf-8"))
+    ClientSocket.sendall((str(Ball.Position[0]) + "-" + str(Ball.Position[1]) + "-" + str(Ball.SpeedX) + "-" + str(Ball.SpeedY)).encode("utf-8"))
     ready_to_read, _, _ = select.select([ClientSocket], [], [], 0)
     if ready_to_read:
         try:
