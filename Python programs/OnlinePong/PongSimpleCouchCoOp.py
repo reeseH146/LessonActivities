@@ -7,7 +7,7 @@ class PaddleEntity:
     def __init__(self, Position, Colour):
         self.Position = Position
         self.Colour = Colour
-        self.Speed = 0.5
+        self.Speed = 3
         self.Dimensions = [20, 1080 * 0.6 * 0.3]
         self.rect = pg.Rect(int(self.Position[0]), int(self.Position[1]), self.Dimensions[0], self.Dimensions[1])
     

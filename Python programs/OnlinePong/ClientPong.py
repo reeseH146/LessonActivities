@@ -55,8 +55,8 @@ class BallEntity:
         self.Position = Position
         self.Radius = Radius
         self.Colour = Colour
-        self.SpeedX = 0
-        Temp = 1
+        self.SpeedX = 8
+        Temp = 8
         self.SpeedY = Temp
         self.Dimensions = [20, 1080 * 0.6 * 0.3]
         self.HitBox = pg.Rect(int(self.Position[0]), int(self.Position[1]), self.Radius * 2, self.Radius * 2)
@@ -177,6 +177,14 @@ while GameOn:
     if ready_to_read:
         try:
             ServerData = int(ClientSocket.recv(128).decode("utf-8").split(".")[0])
+            BallPos = ClientSocket.recv(128).decode("utf-8").split("-")
+            if BallPos[0] and BallPos[1] and BallPos[2] and BallPos[3]:
+                Ball.Position[0] = int(BallPos[0])
+                Ball.Position[1] = int(BallPos[1])
+                Ball.SpeedX = int(BallPos[2])
+                Ball.SpeedY = int(BallPos[3])
+            else:
+                print(BallPos)
             if 0 < ServerData < 1080:
                 Player1.Position[1] = ServerData
             else:

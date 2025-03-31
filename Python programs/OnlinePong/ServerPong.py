@@ -55,8 +55,8 @@ class BallEntity:
         self.Position = Position
         self.Radius = Radius
         self.Colour = Colour
-        self.SpeedX = 0
-        Temp = 1
+        self.SpeedX = 8
+        Temp = 8
         self.SpeedY = Temp
         self.Dimensions = [20, 1080 * 0.6 * 0.3]
         self.HitBox = pg.Rect(int(self.Position[0]), int(self.Position[1]), self.Radius * 2, self.Radius * 2)
@@ -182,6 +182,7 @@ ClientSocket.settimeout(0.2)
 while GameOn:
     Clock.tick(120)
     ClientSocket.sendall(str(Player1.Position[1]).encode("utf-8"))
+    ClientSocket.sendall((str(Ball.Position[0]) + "-" + str(Ball.Position[1]) + "-" + str(Ball.SpeedX) + "-" + str(Ball.SpeedY)).encode("utf-8"))
     ready_to_read, _, _ = select.select([ClientSocket], [], [], 0)
     if ready_to_read:
         try:
