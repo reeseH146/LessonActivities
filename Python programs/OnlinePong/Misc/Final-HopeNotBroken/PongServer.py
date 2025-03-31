@@ -63,21 +63,33 @@ while True:
     if (CurrentTime - PreviousTime) > (1):
         PreviousTime = CurrentTime
         try:
+            print(2)
             # Checks client is connected
             ClientPositions[0] = Clients[0][0].recv(128).decode("utf-8") # ASCII characters in utf-8 is 1 byte
-            ClientPositions[1] = Clients[1][0].recv(128).decode("utf-8") # ASCII characters in utf-8 is 1 byte
+            print(ClientPositions)
+            if ClientPositions[0]:
+                Clients[1][0].sendall("Ready".decode("uft-8"))
+                ClientPositions[1] = Clients[1][0].recv(128).decode("utf-8") # ASCII characters in utf-8 is 1 byte
+            else:
+                print("Help")
+            print(ClientPositions)
+            print(3)
             if not ClientPositions[0]:
-                break
+                print(4)
+                continue
             else:
-                Clients[0][0].send(f"{ClientPositions[1]}".encode("utf-8"))
+                print(5)
+                Clients[0][0].sendall(f"{ClientPositions[1]}".encode("utf-8"))
             if not ClientPositions[1]:
+                print(6)
                 break
             else:
-                Clients[1][0].send(f"{ClientPositions[0]}".encode("utf-8"))
+                print(7)
+                Clients[1][0].sendall(f"{ClientPositions[0]}".encode("utf-8"))
+            ClientPositions = []
         # If either clients disconnects then closes the game
         except Exception:
             print(f"\033[0;31mERROR : {Exception}\033[0;31m")
-            break
 
 # Closes socket and program
 print("\033[0;33mServer closing\033[0;33m")
@@ -87,3 +99,12 @@ try:
     print("\033[0;32mServer closed\033[0;32m")
 except Exception:
     print(Exception)
+
+
+"""
+Who is going to MC movie
+Reese
+Josh
+Ralfs
+Zeke
+"""
