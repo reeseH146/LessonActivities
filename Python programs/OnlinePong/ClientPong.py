@@ -173,9 +173,11 @@ ClientSocket.settimeout(0.2)
 # Main loop
 while GameOn:
     Clock.tick(120)
+    Turn = False
     ready_to_read, _, _ = select.select([ClientSocket], [], [], 0)
     if ready_to_read:
         try:
+            ServerData = ClientSocket.recv(512).decode("utf-8")
             ServerData = ClientSocket.recv(512).decode("utf-8").split("-")
             BallPos = int(ServerData[0])
             if BallPos[1] and BallPos[2]:# and BallPos[2] and BallPos[3]:
@@ -183,7 +185,10 @@ while GameOn:
                 Ball.Position[1] = int(BallPos[2])
                 #Ball.SpeedX = int(BallPos[2])
                 #Ball.SpeedY = int(BallPos[3])
-                ClientSocket.sendall(str(Player2.Position[1]).encode("utf-8"))
+                Turn = True
+                if Turn:
+                    ClientSocket.sendall(str(Player2.Position[1]).encode("utf-8"))
+                    Turn = False
             else:
                 print(BallPos)
             if 0 < ServerData < 1080:
