@@ -16,7 +16,7 @@ class PaddleEntity:
     def __init__(self, Position, Colour):
         self.Position = Position
         self.Colour = Colour
-        self.Speed = 13
+        self.Speed = 5
         self.Dimensions = [20, 1080 * 0.6 * 0.3]
         self.rect = pg.Rect(int(self.Position[0]), int(self.Position[1]), self.Dimensions[0], self.Dimensions[1])
     
@@ -55,8 +55,8 @@ class BallEntity:
         self.Position = Position
         self.Radius = Radius
         self.Colour = Colour
-        self.SpeedX = 8
-        Temp = 8
+        self.SpeedX = 2
+        Temp = 2
         self.SpeedY = Temp
         self.Dimensions = [20, 1080 * 0.6 * 0.3]
         self.HitBox = pg.Rect(int(self.Position[0]), int(self.Position[1]), self.Radius * 2, self.Radius * 2)
@@ -116,6 +116,7 @@ while True:
     try:
         Port = 12345 # Default port
         HostIp = socket.gethostbyname(socket.gethostname())#"10.18.71.23" # LAN IP
+        HostIp = "10.18.71.23"
         ClientSocket.connect((HostIp, Port))
         print("\033[0;32mSocket successfully connected to Reese LAN Pong server.\033[0;32m") 
         break
@@ -172,17 +173,17 @@ ClientSocket.settimeout(0.2)
 # Main loop
 while GameOn:
     Clock.tick(120)
-    ClientSocket.sendall(str(Player2.Position[1]).encode("utf-8"))
     ready_to_read, _, _ = select.select([ClientSocket], [], [], 0)
     if ready_to_read:
         try:
-            ServerData = int(ClientSocket.recv(128).decode("utf-8").split(".")[0])
-            BallPos = ClientSocket.recv(128).decode("utf-8").split("-")
-            if BallPos[0] and BallPos[1] and BallPos[2] and BallPos[3]:
-                Ball.Position[0] = int(BallPos[0])
-                Ball.Position[1] = int(BallPos[1])
-                Ball.SpeedX = int(BallPos[2])
-                Ball.SpeedY = int(BallPos[3])
+            ServerData = ClientSocket.recv(512).decode("utf-8").split("-")
+            BallPos = int(ServerData[0])
+            if BallPos[1] and BallPos[2]:# and BallPos[2] and BallPos[3]:
+                Ball.Position[0] = int(BallPos[1])
+                Ball.Position[1] = int(BallPos[2])
+                #Ball.SpeedX = int(BallPos[2])
+                #Ball.SpeedY = int(BallPos[3])
+                ClientSocket.sendall(str(Player2.Position[1]).encode("utf-8"))
             else:
                 print(BallPos)
             if 0 < ServerData < 1080:

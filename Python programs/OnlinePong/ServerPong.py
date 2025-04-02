@@ -16,7 +16,7 @@ class PaddleEntity:
     def __init__(self, Position, Colour):
         self.Position = Position
         self.Colour = Colour
-        self.Speed = 13
+        self.Speed = 5
         self.Dimensions = [20, 1080 * 0.6 * 0.3]
         self.rect = pg.Rect(int(self.Position[0]), int(self.Position[1]), self.Dimensions[0], self.Dimensions[1])
     
@@ -55,8 +55,8 @@ class BallEntity:
         self.Position = Position
         self.Radius = Radius
         self.Colour = Colour
-        self.SpeedX = 8
-        Temp = 8
+        self.SpeedX = 2
+        Temp = 2
         self.SpeedY = Temp
         self.Dimensions = [20, 1080 * 0.6 * 0.3]
         self.HitBox = pg.Rect(int(self.Position[0]), int(self.Position[1]), self.Radius * 2, self.Radius * 2)
@@ -109,7 +109,6 @@ try:
     # Prepares socket for connections
     Port = 12345 # default port for socket
     ServerIP = socket.gethostbyname(socket.gethostname())
-    print(ServerIP)
     ServerSocket.bind((ServerIP, Port)) # Binds socket to address at port, empty address means server listens for all network
     print(f"\033[0;33mSocket binded at port {Port}\033[0;33m")
     ServerSocket.listen(1) # Listens for incoming connections, backlog is 2 meaning max connections
@@ -160,7 +159,7 @@ while True:
             GameOn = True
             print("Client ready - starting game!")
             # Send start time to sync client and server
-            StartTemp = t.time() + 1  # 1-second delay before starting
+            StartTemp = t.time() + 1.0  # 1-second delay before starting
             ClientSocket.sendall(f"{StartTemp}".encode("utf-8"))
             break
         else:
@@ -181,8 +180,7 @@ ClientSocket.settimeout(0.2)
 # Main loop
 while GameOn:
     Clock.tick(120)
-    ClientSocket.sendall(str(Player1.Position[1]).encode("utf-8"))
-    ClientSocket.sendall((str(Ball.Position[0]) + "-" + str(Ball.Position[1]) + "-" + str(Ball.SpeedX) + "-" + str(Ball.SpeedY)).encode("utf-8"))
+    ClientSocket.sendall((str(Player1.Position[1]) + "-" + str(Ball.Position[0]) + "-" + str(Ball.Position[1])).encode("utf-8")) # + "-" + str(Ball.SpeedX) + "-" + str(Ball.SpeedY)
     ready_to_read, _, _ = select.select([ClientSocket], [], [], 0)
     if ready_to_read:
         try:
@@ -197,8 +195,7 @@ while GameOn:
     # Interacts with game
     for event in pg.event.get():
         if event.type == pg.QUIT:
-            pg.quit()
-            break
+            GameOn = False
     KeysPressed = pg.key.get_pressed()
     if KeysPressed[pg.K_ESCAPE]:
         pg.quit()
