@@ -178,19 +178,23 @@ PreviousTime = t.time()
 ClientSocket.settimeout(0.2)
 # Games run until connection breaks or someone loses
 # Main loop
+Turn = True
 while GameOn:
     Clock.tick(120)
-    ClientSocket.sendall((str(Player1.Position[1]) + "-" + str(Ball.Position[0]) + "-" + str(Ball.Position[1])).encode("utf-8")) # + "-" + str(Ball.SpeedX) + "-" + str(Ball.SpeedY)
-    ready_to_read, _, _ = select.select([ClientSocket], [], [], 0)
-    if ready_to_read:
-        try:
-            ServerData = int(ClientSocket.recv(128).decode("utf-8").split(".")[0])
-            if 0 < ServerData < 1080:
-                Player2.Position[1] = ServerData
-            else:
-                print(ServerData)
-        except Exception:
-            print(Exception)
+    if Turn:
+        ClientSocket.sendall(str(Player1.Position[1]).encode("utf-8"))
+        ClientSocket.sendall((str(Ball.Position[0]) + "-" + str(Ball.Position[1])).encode("utf-8")) # + "-" + str(Ball.SpeedX) + "-" + str(Ball.SpeedY))
+        ready_to_read, _, _ = select.select([ClientSocket], [], [], 0)
+        if ready_to_read:
+            try:
+                ServerData = int(ClientSocket.recv(128).decode("utf-8").split(".")[0])
+                Turn = False
+                if 0 < ServerData < 1080:
+                    Player2.Position[1] = ServerData
+                else:
+                    print(ServerData)
+            except Exception:
+                print(Exception)
 
     # Interacts with game
     for event in pg.event.get():

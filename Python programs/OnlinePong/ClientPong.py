@@ -171,9 +171,9 @@ PreviousTime = t.time()
 ClientSocket.settimeout(0.2)
 # Games run until connection breaks or someone loses
 # Main loop
+Turn = False
 while GameOn:
     Clock.tick(120)
-    Turn = False
     ready_to_read, _, _ = select.select([ClientSocket], [], [], 0)
     if ready_to_read:
         try:
