@@ -1,15 +1,15 @@
 UserNameList = []
 
 def existingUsers(NewUName, UNameList):
-    for UserNames in UNameList: # 
+    for UserNames in UNameList:
         if UserNames == NewUName: # If name found in list then returns early
             return False
     return True # Always returns true if there is not false since return terminates the function
 
 while True:
     #Asks for employee details
-    FirstName = "REESE"#input("Give first name NOW : ")
-    SecondName = "HE"#input("Give second name AGAIN : ")
+    FirstName = "REESE"
+    SecondName = "HE"
 
     # Creates the username
     Unique = False
