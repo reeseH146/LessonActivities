@@ -1,0 +1,1 @@
+[MimikyuVMAX.randint(Values[1], Values[2]) for x in range(Values[0])]
