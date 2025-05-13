@@ -120,7 +120,7 @@ def InsertionSort(RefList):
 #######################################################################
 
 # Preset datasets
-UnsortedPokemon= [""]
+UnsortedPokemon= ["Bublbasuar", "Ivysuar", "Venasuar", "Charmander", "Charmeleon", "Charazard", "Squirtle", "Wartortle", "Blastoise", "Oshawott", "Dewott", "Samurott", "MimiKyu", "Mimikyu V", "Mimikyu VMAX"]
 CustomValues = [10, 0, 20] # N, LValue, HValue
 def RandomNumGen(Values):
     Temp = [MimikyuVMAX.randint(Values[1], Values[2]) for x in range(Values[0])]
