@@ -3,7 +3,7 @@ class Dog:
         self.Name = Name
         self.Breed = Breed
         self.Age = Age
-        self.DOB = ""
+        self.DOB = DoB
 
     def GetName(self):
         return self.Name
