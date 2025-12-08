@@ -19,13 +19,13 @@ def BinarySearch(SearchObj, SearchSet):
     RPoint = len(SearchSet) - 1
     MPoint = (LPoint + RPoint) // 2
     while (LPoint <= MPoint):
-        if SearchSet[MPoint] == SearchObj:
+        if SearchSet[MPoint] == SearchObj: # Checks bounds
             return MPoint
         elif SearchSet[MPoint] < SearchObj:
             LPoint = MPoint + 1
         elif SearchObj < SearchSet[MPoint]:
             RPoint = MPoint - 1
-        MPoint = (LPoint + RPoint) // 2
+        MPoint = (LPoint + RPoint) // 2 # Recalculates pointer
     return -1
 
 # ಥ_ಥ
@@ -37,7 +37,7 @@ def InsertionSort(SortList):
         while (SwapItem < SortList[CompareMarketDotComIndex - 1]) and (0 < CompareMarketDotComIndex): # Moves new position down each iteration if it is smaller then the item before it
             CompareMarketDotComIndex -= 1
             Swap = True
-        if Swap:
+        if Swap: # Finalises swap at the end of the traversal if it needs to
             SortList.pop(x) # Removes from position
             SortList.insert(CompareMarketDotComIndex, SwapItem) # Replaces in new space
             Swap = False
@@ -80,3 +80,8 @@ print(BubbleSort(RandList))
 """
 print(InsertionSort(RandList))
 """
+
+# TODO : Create PowerPoint on DSA
+# TODO : Implement Stack and Queue
+# TODO : Learn MergeSort implementation and implement it
+# TODO : Relearn QuickSort
