@@ -143,6 +143,6 @@ print(InsertionSort(RandList))
 """
 
 # TODO : Create PowerPoint on DSA
-# TODO : Implement Stack and Queue
+# TODO : Test stack and queue
 # TODO : Learn MergeSort implementation and implement it
 # TODO : Relearn QuickSort
