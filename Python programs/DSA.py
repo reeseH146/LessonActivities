@@ -58,10 +58,71 @@ def BubbleSort(SortList):
 """
 def MergeSort
 
-class Stack
+def QuickSort
 
-class Queue
 """
+class Stack:
+    def __init__(self, Length):
+        self.多大 = Length - 1
+        self.Stack = [None for x in range(0, Length)]
+        self.高 = 0
+
+    def Peak(self):
+        if self.Stack[self.高] != None:
+            return self.Stack[self.高]
+
+    def Push(self, PushItem):
+        if self.高 < self.多大:
+            self.高 += 1
+            self.Stack[self.高] = PushItem
+            return f"Pushed {PushItem}"
+        else:
+            return f"Stack overflow : {PushItem} lost"
+
+    def Pop(self):
+        if self.Stack[self.高] == None: # Implies that 高 already points to bottom
+            return "Stack underflow : Unfortunately no infinite dupe glitch"
+        else:
+            self.Stack[self.高] = None
+            if 0 < self.Stack:
+                self.高 -= 1
+
+class CircularQueue:
+    def __init__(self, Length):
+        self.MAXLENGTH = Length - 1
+        self.Queue = [None for x in range(0, Length)]
+        self.FPointer = 0
+        self.BPointer = 0
+
+    
+    def Peak(self):
+        if self.Queue[self.FPointer] != None:
+            return self.Queue[self.FPointer]
+        
+    def Enqueue(self, EnqueueItem): 
+        # If BPointer before LPointer and does not cross (even after enqueue), then enqueue
+        # Assumes BPointer is after FPointer
+        if (self.BPointer < (self.FPointer - 1)) or (self.BPointer < self.MAXLENGTH): 
+            self.Queue[self.BPointer] = EnqueueItem
+            self.BPointer += 1
+        # Checks for 
+        elif (self.BPointer == self.MAXLENGTH) and (0 < self.FPointer):
+            self.BPointer = 0
+            self.Queue[self.BPointer] = EnqueueItem
+
+        if self.BPointer < self.MAXLENGTH:
+            self.Queue[self.BPointer]
+        elif self.BPointer == self.MAXLENGTH:
+            self.BPointer
+
+    def Dequeue(self):
+        if self.Queue[self.FPointer] == None:
+            return "Queue empty"
+        else:
+            self.Queue[self.FPointer] = None
+            if self.FPointer < self.BPointer: # If equal to BP then does not increment to illegally cross
+                self.FPointer += 1
+            return "Dequeued successfully"
 
 RandList = [r.randint(0, 10) for x in range(0, 10)]
 NRandList = [x for x in range(0, 10)]
