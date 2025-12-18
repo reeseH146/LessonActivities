@@ -33,14 +33,10 @@ def InsertionSort(SortList):
     for x in range(1, len(SortList)):
         SwapItem = SortList[x]
         CompareMarketDotComIndex = x
-        Swap = False
         while (SwapItem < SortList[CompareMarketDotComIndex - 1]) and (0 < CompareMarketDotComIndex): # Moves new position down each iteration if it is smaller then the item before it
+            SortList[CompareMarketDotComIndex] = SortList[CompareMarketDotComIndex - 1] # Swaps
             CompareMarketDotComIndex -= 1
-            Swap = True
-        if Swap: # Finalises swap at the end of the traversal if it needs to
-            SortList.pop(x) # Removes from position
-            SortList.insert(CompareMarketDotComIndex, SwapItem) # Replaces in new space
-            Swap = False
+        SortList[CompareMarketDotComIndex] = SwapItem # If indexes moves then item placed in sorted place, otherwise replaces same space
     return SortList
 
 #☆*: .｡. o(≧▽≦)o .｡.:*☆
@@ -55,12 +51,56 @@ def BubbleSort(SortList):
             break
     return SortList
 
-"""
-def MergeSort
+def MergeSortMerge(SortList, LPoint, RBound, LBound):
+    RPoint = LBound + 1
 
-def QuickSort
+    while (LPoint <= LBound) or (RPoint <= RBound): # While not reached end of both sections of each lists to merge
+        if SortList[LPoint] < SortList[RPoint]: # Selects the smallest value from the front of both list and inserts them
+            SortList[LPoint], SortList[RPoint] = SortList[RPoint], SortList[LPoint]
+            LPoint += 1
+        elif SortList[LPoint] >= SortList[RPoint]:
+            SortList[LPoint], SortList[RPoint] = SortList[RPoint], SortList[LPoint]
+            RPoint += 1
+
+    # if not (LPoint <= LBound) and (RPoint <= RBound): # If RSide incomplete, move it to the back
+    # Don't think need this, if RSide incomplete then 
+
+# MPoint counts as left partition
+def MergeSort(SortList, LPoint, RPoint):
+    if LPoint >= RPoint:
+        return
+    else:
+        MPoint = (LPoint + RPoint) // 2 # Provides the splitter index
+        print(SortList[LPoint:MPoint])
+        MergeSort(SortList, LPoint, MPoint) # Splits list in LHalf
+
+        print(SortList[MPoint + 1:RPoint])
+        MergeSort(SortList, MPoint + 1, RPoint) # Splits list in RHalf
+
+        print(SortList[LPoint:RPoint])
+        MergeSortMerge(SortList, LPoint, RPoint, MPoint) # Merges List together
+
+# 5, 3, 1, 9
+# 1, 3, 5, 9
+# 1, 
+
+def MergeSortRuntime(SortList):
+    print(SortList)
+    return MergeSort(SortList, 0, len(SortList))
 
 """
+Calculate a pivot point
+Sort items
+Recurse
+"""
+def QuickSort(SortList, LRange, RRange):
+    if LRange == RRange:
+        pass
+    else:
+        Pivot = (LRange + RRange) // 2
+        #i quit
+
+
 class Stack:
     def __init__(self, Length):
         self.多大 = Length - 1
@@ -141,6 +181,9 @@ print(BubbleSort(RandList))
 """
 print(InsertionSort(RandList))
 """
+
+#MergeSortRuntime(RandList)
+QuickSort(RandList, 0, len(RandList) - 1)
 
 # TODO : Create PowerPoint on DSA
 # TODO : Test stack and queue
